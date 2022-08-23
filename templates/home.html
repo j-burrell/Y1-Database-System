@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv ="Content-type" content ="text/html;charset=utf-8" />
+		<title>Coursework Database</title>
+	</head>
+	
+	<body>
+	
+		<h1>Bookstore Database</h1>
+		
+		<h3>Task 1</h3>
+		<form action= "task1" method= "post">
+		
+			CategoryID: <input type= "text" name= "categoryid" ><br>
+			Category name: <input type= "text" name= "categoryname" ><br>
+			Category type: <select name= "categorytype">
+								<option value= "Non-fiction">Non-fiction</option>
+								<option value= "fiction">fiction</option>
+							</select><br>
+			<input type = "submit" value = "Add category to database." >
+			
+		</form>
+		
+		{{msg1}}<br>
+		{{error1}}<br>
+		
+		<h3>Task 2</h3>
+		<form action= "task2" method= "post">
+		
+			CategoryID: <input type= "text" name= "ciddelete" ><br>
+			<input type = "submit" value = "Delete category from database." >
+		
+		</form>
+		
+		{{msg2}}<br>
+		{{error2}}<br>
+		
+		<h3>Task 3</h3>
+		
+			<form action= "task3" method= "post">
+				<input type = "submit" value = "See task 3 data." >
+			</form>
+		
+		{{msg3}}<br>
+		{{error3}}<br>
+		
+		<h3>Task 4</h3>
+		
+		<form action= "task4" method= "post">
+		
+			Publisher name: <input type= "text" name= "publishername" ><br>
+			<input type = "submit" value = "See task 4 data." >
+		
+		</form>
+		
+		{{msg4}}<br>
+		{{error4}}<br>
+		
+		<h3>Task 5</h3>
+		
+		<form action= "task5" method= "post">
+		
+			BookID: <input type= "text" name= "bookid" ><br>
+			<input type = "submit" value = "See task 5 data." >
+		
+		</form>
+		
+		{{msg5}}<br>
+		{{error5}}<br>
+		
+		<h3>Task 6</h3>
+		
+		<form action= "task6" method= "post">
+		
+			Start date: <input type= "date" name="startdate"><br>
+			End date: <input type= "date" name="enddate"><br>
+			<input type = "submit" value = "See task 6 data." >
+		
+		</form>
+		
+		{{msg6}}<br>
+		{{error6}}<br>
+		
+		<h3>Task 7</h3>
+		
+		<form action="task7" method="post">
+		
+			Discount percentage:<input type="text" name="discountpercentage"><br>
+			CategoryID:<input type="text" name="categoryid"><br>
+			<input type = "submit" value = "Apply discount percentage.">
+			
+		</form>
+		
+		{{msg7}}<br>
+		{{error7}}<br>
+		
+	</body>
+	
+</html>

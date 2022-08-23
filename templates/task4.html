@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv ="Content-type" content ="text/html;charset=utf-8" />
+		<title>Coursework Database</title>
+	</head>
+	
+	<body>
+	
+		<h1>Publisher order report.</h1>
+	
+		<h3>Main Query Data</h3>
+		
+        <table border=1>
+            <tr>
+                <th> Month </th>
+                <th> Year </th>
+				<th> BookID </th>
+				<th> Title </th>
+				<th> Total orders in month. </th>
+				<th> Total books ordered in month. </th>
+				<th> Total order value for month. (£) </th>
+                <th> Total retail value for month. (£)</th>
+            </tr>
+            {% for row in rows_main %}
+                <tr>
+                    {% for item in row%}
+                        <td> {{item}} </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table><br>
+		
+		<form action = "/" method = "GET" >
+			<input type = "submit" value = "Home" >
+		</form>
+	
+	</body>
+	
+</html>

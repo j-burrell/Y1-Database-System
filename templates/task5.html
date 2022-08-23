@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv ="Content-type" content ="text/html;charset=utf-8" />
+		<title>Coursework Database</title>
+	</head>
+	
+	<body>
+	
+		<h1>Book order history.</h1>
+	
+		<h3>Main Query Data</h3>
+		
+        <table border=1>
+            <tr>
+                <th> Order date. </th>
+                <th> Title </th>
+                <th> Price(£) </th>
+				<th> Unit selling price.(£) </th>
+				<th> Quantity </th>
+				<th> Order value.(£)</th>
+				<th> Shop name. </th>
+            </tr>
+            {% for row in rows_main %}
+                <tr>
+                    {% for item in row%}
+                        <td> {{item}} </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+		
+		<h3>Summary Query Data</h3>
+		
+		        <table border=1>
+            <tr>
+                <th> BookID </th>
+				<th> Title </th>
+				<th> Number of orders. </th>
+                <th> Total selling value.(£)</th>
+            </tr>
+            {% for row in rows_summary %}
+                <tr>
+                    {% for item in row%}
+                        <td> {{item}} </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table><br>
+		
+		<form action = "/" method = "GET" >
+			<input type = "submit" value = "Home" >
+		</form>
+	
+	</body>
+	
+</html>

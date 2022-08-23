@@ -1,0 +1,54 @@
+1) 
+INSERT INTO bookstore.category(categoryid, name, categorytype) VALUES (10, 'Cookbook', 'Non-fiction');
+
+2) 
+DELETE FROM bookstore.category WHERE CategoryID = 10;
+
+3a) 
+SELECT name AS category, count(*) AS numberofbooksincategory, ROUND(AVG(price), 2) AS averagepriceofcategory 
+FROM bookstore.category, bookstore.book 
+WHERE category.categoryid = book.categoryid 
+GROUP BY category.categoryid;
+
+3b) 
+SELECT COUNT(bookid) AS totalnumberofallbooks, ROUND( AVG(price), 2) AS averageallbookprice 
+FROM bookstore.book;
+
+4)
+SELECT 
+
+TO_CHAR(orderdate, 'Mon') AS month, 
+extract(year FROM orderdate) AS year, 
+orderline.bookid, title, COUNT(orderline.bookid) AS totalordersinmonth, 
+SUM(quantity) AS totalbooksorderedinmonth, 
+SUM(unitsellingprice * quantity) AS totalordervalueformonth, 
+SUM(price * quantity) AS totalretailvalueformonth
+
+FROM bookstore.shoporder, bookstore.orderline, bookstore.book, bookstore.publisher 
+WHERE shoporder.shoporderid = orderline.shoporderid AND orderline.bookid = book.bookid AND book.publisherid = publisher.publisherid AND name = 'Oxford University Press'
+GROUP BY TO_CHAR(orderdate, 'Mon'), extract(year FROM orderdate), title, orderline.bookid
+ORDER BY 1, 2;
+
+
+5a) 
+SELECT orderdate, title, price, unitsellingprice, quantity, (quantity * unitsellingprice) AS ordervalue, name as shopname
+FROM bookstore.orderline, bookstore.shoporder, bookstore.shop, bookstore.book
+WHERE orderline.shoporderid = shoporder.shoporderid AND shoporder.shopid = shop.shopid AND orderline.bookid = book.bookid AND book.bookid = 10
+ORDER BY orderdate ASC;
+
+5b)
+SELECT orderline.bookid, title, COUNT(orderline.bookid) AS numberoforders, SUM((quantity * unitsellingprice)) AS totalsellingvalue
+FROM bookstore.orderline, bookstore.book
+WHERE orderline.bookid = 10 AND orderline.bookid = book.bookid
+GROUP BY orderline.bookid, title;
+
+6) 
+SELECT name, SUM(quantity * unitsellingprice) AS totalsaleprice 
+FROM bookstore.orderline, bookstore.shoporder, bookstore.salesrep 
+WHERE shoporder.shoporderid = orderline.shoporderid AND shoporder.salesrepid = salesrep.salesrepid AND orderdate BETWEEN '01-01-2017' AND '01-12-2017'
+GROUP BY name
+ORDER BY totalsaleprice DESC;
+
+7) 
+UPDATE bookstore.book SET price = (price * (200 * 0.01)) 
+WHERE (SELECT categoryid FROM bookstore.category WHERE book.categoryid = category.categoryid) = 2;
